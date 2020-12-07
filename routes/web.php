@@ -22,4 +22,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('accounts', 'AccountController')->middleware('auth');
+Route::resource('accounts', 'AccountsController')->middleware('auth');
+
+Route::resource('transactions', 'TransactionsController')->middleware('auth');

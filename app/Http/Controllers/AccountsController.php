@@ -3,19 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class AccountsController extends Controller
 {
     public function index(): view
     {
         $accounts = auth()->user()->accounts;
 
-        $user = auth()->user();
+        $sentTransactions = auth()->user()->sentTransactions;
+        $receivedTransactions = auth()->user()->receivedTransactions;
 
-        return view('accounts.index', compact(['accounts', 'user']));
+        foreach($accounts as $account)
+        {
+            $t = Transaction::where('from_user_id', $account->name)->get();
+            if ($t->count() !== 0) {
+                $sentTransactions = $t;
+            }
+            $t = Transaction::where('to_user_id', $account->name)->get();
+            if ($t->count() !== 0) {
+                $receivedTransactions = $t;
+            }
+        }
+
+        return view('accounts.index', [
+            'user' => auth()->user(),
+            'accounts' => auth()->user()->accounts,
+            'sentTransactions' => $sentTransactions,
+            'receivedTransactions' => $receivedTransactions,
+        ]);
     }
 
     public function create(): view

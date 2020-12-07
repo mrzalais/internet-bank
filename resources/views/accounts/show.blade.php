@@ -6,4 +6,7 @@
             Current balance: <b>{{ $account->balanceInDollars() }}</b>
         </h2>
     </div>
+    <div class="container">
+        Here should be transaction history
+    </div>
 @endsection
