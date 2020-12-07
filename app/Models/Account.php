@@ -18,14 +18,4 @@ class Account extends Model
     {
         return '$' . $this->balance / 100;
     }
-
-    public function withdraw(int $amount): void
-    {
-        $this->balance -= $amount;
-    }
-
-    public function deposit(int $amount): void
-    {
-        $this->balance += $amount;
-    }
 }

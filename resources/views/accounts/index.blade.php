@@ -42,7 +42,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Are you sure?')">
-                                    Dzēst
+                                    Delete
                                 </button>
                             </form>
                         </td>
@@ -95,7 +95,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure?')">
-                                        Dzēst
+                                        Delete entry
                                     </button>
                                 </form>
                             </td>
@@ -149,7 +149,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure?')">
-                                        Dzēst
+                                        Delete entry
                                     </button>
                                 </form>
                             </td>

@@ -19,13 +19,14 @@ class AccountsController extends Controller
 
         foreach($accounts as $account)
         {
-            $t = Transaction::where('from_user_id', $account->name)->get();
-            if ($t->count() !== 0) {
-                $sentTransactions = $t;
+            $s = Transaction::where('from_user_id', $account->name)->get();
+            $r = Transaction::where('to_user_id', $account->name)->get();
+
+            if ($s->count() !== 0) {
+                $sentTransactions[] = $s;
             }
-            $t = Transaction::where('to_user_id', $account->name)->get();
-            if ($t->count() !== 0) {
-                $receivedTransactions = $t;
+            if ($r->count() !== 0) {
+                $receivedTransactions[] = $r;
             }
         }
 

@@ -25,9 +25,6 @@ class TransactionsController extends Controller
         $accountB = Account::where('name', $request['to_user_id'])->first();
         $cents = $request['amount'];
 
-        $accountA->withdraw($cents);
-        $accountB->deposit($cents);
-
         $this->update($accountA, $accountB, $cents);
 
         $transaction = (new Transaction)->fill($request->all());
