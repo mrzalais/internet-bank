@@ -23,10 +23,10 @@ class AccountsController extends Controller
             $r = Transaction::where('to_user_id', $account->name)->get();
 
             if ($s->count() !== 0) {
-                $sentTransactions[] = $s;
+                $sentTransactions = $s;
             }
             if ($r->count() !== 0) {
-                $receivedTransactions[] = $r;
+                $receivedTransactions = $r;
             }
         }
 
