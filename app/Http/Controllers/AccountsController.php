@@ -47,7 +47,7 @@ class AccountsController extends Controller
     {
         $details = request()->validate([
             'name' => 'required',
-            'balance' => 'required',
+            'balance' => 'required|int',
             'currency_type' => 'required',
         ]);
 

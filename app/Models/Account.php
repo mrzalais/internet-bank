@@ -15,8 +15,8 @@ class Account extends Model
         'currency_type',
     ];
 
-    public function balanceInDollars(): string
+    public function formattedBalance(): string
     {
-        return '$' . $this->balance / 100;
+        return number_format($this->balance, 2);
     }
 }

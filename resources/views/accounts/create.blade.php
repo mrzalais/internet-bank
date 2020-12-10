@@ -19,7 +19,7 @@
                 <label for="balance" class="label">Starting balance</label>
 
                 <div class="control">
-                    <input type="text" class="input" name="balance" placeholder="Starting balance">
+                    <input type="number" class="input" name="balance" placeholder="Starting balance">
                 </div>
             </div>
 

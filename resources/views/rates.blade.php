@@ -13,45 +13,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @endif
-                    @forelse($currencyArray as $currency)
+                    @foreach($rates as $rate)
                         <tr>
-                            <th scope="row">{{ $transaction->id }}</th>
+                            <th scope="row">{{ $rate->id }}</th>
                             <td>
-                                {{ $transaction->from_user_id }}
+                                {{ $rate->rate_id }}
                             </td>
                             <td>
-                                {{ $transaction->to_user_id }}
+                                {{ $rate->rate }}
                             </td>
-                            <td>
-                                <a href="{{ route('transactions.show', $transaction) }}">
-                                    {{ $transaction->description }}
-                                </a>
-                            </td>
-                            <td>
-                                {{ $transaction->transactionInDollars() }}
-                            </td>
-                            <td>
-                                <form method="post" action="{{ route('transactions.destroy', $transaction) }}"
-                                      style="display: inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure?')">
-                                        Delete entry
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <br>
-                        Currently there is no transaction history to show.
-                    @endforelse
-                    </tbody>
-                </table>
-                    @foreach($currencyArray as $currency)
-                        {{ $currency }}
-                    @endforeach
+                @endforeach
             </div>
         </div>
     </div>

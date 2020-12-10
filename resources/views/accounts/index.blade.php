@@ -17,8 +17,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Account name</th>
-                    <th scope="col">Balance</th>
                     <th scope="col">Currency</th>
+                    <th scope="col">Balance</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -32,7 +32,8 @@
                                 {{ $account->name }}
                             </a>
                         </td>
-                        <td>{{ $account->balanceInDollars() }}</td>
+                        <td>{{ $account->currency_type }}</td>
+                        <td>{{ $account->formattedBalance() }}</td>
                         <td>
                             <a href="{{ route('accounts.edit', $account) }}" class="btn btn-sm btn-warning">
                                 Edit account name
