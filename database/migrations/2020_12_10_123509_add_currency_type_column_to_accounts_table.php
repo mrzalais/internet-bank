@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatesTable extends Migration
+class AddCurrencyTypeColumnToAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
-            $table->id();
-            $table->string('rate_id');
-            $table->string('rate');
-            $table->timestamps();
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->string('currency_type')
+                ->after('balance');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::table('accounts', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -18,6 +18,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Account name</th>
                     <th scope="col">Balance</th>
+                    <th scope="col">Currency</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>

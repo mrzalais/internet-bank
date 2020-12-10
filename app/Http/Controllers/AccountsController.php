@@ -48,6 +48,7 @@ class AccountsController extends Controller
         $details = request()->validate([
             'name' => 'required',
             'balance' => 'required',
+            'currency_type' => 'required',
         ]);
 
         auth()->user()->accounts()->create($details);

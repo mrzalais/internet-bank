@@ -20,9 +20,8 @@ class RatesController extends Controller
             $currency = $xmlObj->Currencies->Currency[$i];
             $currencyId = $currency->ID;
             $currencyRate = $currency->Rate;
+
         }
-
-
 
         return view('rates', ['currencyArray' => $currencyArray]);
     }

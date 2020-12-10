@@ -14,13 +14,14 @@
                             </div>
                         @endif
 
-                        {{ __('Please enter your authentication code to login.') }}
+                        {{ __('Please enter your authentication code to proceed.') }}
 
                         <form method="POST" action="{{ url('/two-factor-challenge') }}">
-                        @csrf
-                        <input type="text" name="code"/>
-                            <input name="submit" id="submit" class="btn btn-block login-btn mb-4" type="submit" value="">
-
+                            @csrf
+                            <input type="text" name="code"/>
+                            <input name="submit" id="submit" class="btn btn-block login-btn mb-4" type="submit"
+                                   value="">
+                        </form>
                     </div>
                 </div>
             </div>

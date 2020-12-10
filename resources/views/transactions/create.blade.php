@@ -4,7 +4,6 @@
     <div class="container">
         <form method="POST" action="/transactions">
             @csrf
-
             <h1 class="heading is-1">Make a new transaction</h1>
 
             <div class="field">

@@ -12,6 +12,7 @@ class Account extends Model
     protected $fillable = [
         'name',
         'balance',
+        'currency_type',
     ];
 
     public function balanceInDollars(): string

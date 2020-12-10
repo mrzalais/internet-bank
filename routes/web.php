@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home');
-})->middleware(['auth', 'verified']);
+})->middleware(['auth']);
 
 Route::resource('accounts', 'AccountsController')->middleware('auth');
 
-Route::resource('transactions', 'TransactionsController')->middleware('auth');
+Route::resource('transactions', 'TransactionsController')->middleware(['auth', 'password.confirm']);
 
 Route::resource('/rates', 'RatesController');
