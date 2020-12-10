@@ -24,3 +24,5 @@ Route::get('/home', function () {
 Route::resource('accounts', 'AccountsController')->middleware('auth');
 
 Route::resource('transactions', 'TransactionsController')->middleware('auth');
+
+Route::resource('/rates', 'RatesController');
