@@ -57,15 +57,15 @@
             </table>
     </div>
     <div class="container">
-        <h1>Your sent transactions</h1>
+        <h1 class="pt-3">Your sent transactions</h1>
         <div>
             @if ($sentTransactions->count() !== 0)
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">From</th>
                         <th scope="col">To</th>
+                        <th scope="col">From</th>
                         <th scope="col">Description</th>
                         <th scope="col">Amount transferred</th>
                         <th scope="col"></th>
@@ -77,15 +77,13 @@
                         <tr>
                             <th scope="row">{{ $transaction->id }}</th>
                             <td>
-                                {{ $transaction->from_user_id }}
+                                {{ $transaction->from_user_account_id }}
                             </td>
                             <td>
-                                {{ $transaction->to_user_id }}
+                                {{ $transaction->to_user_account_id }}
                             </td>
                             <td>
-                                <a href="{{ route('transactions.show', $transaction) }}">
-                                    {{ $transaction->description }}
-                                </a>
+                                {{ $transaction->description }}
                             </td>
                             <td>
                                 {{ $transaction->transactionInDollars() }}
@@ -111,7 +109,7 @@
         </div>
     </div>
     <div class="container">
-        <h1>Your received transactions</h1>
+        <h1 class="pt-3">Your received transactions</h1>
         <div>
             @if ($receivedTransactions->count() !== 0)
                 <table class="table">
@@ -131,15 +129,13 @@
                         <tr>
                             <th scope="row">{{ $transaction->id }}</th>
                             <td>
-                                {{ $transaction->from_user_id }}
+                                {{ $transaction->from_user_account_id }}
                             </td>
                             <td>
-                                {{ $transaction->to_user_id }}
+                                {{ $transaction->to_user_account_id }}
                             </td>
                             <td>
-                                <a href="{{ route('transactions.show', $transaction) }}">
-                                    {{ $transaction->description }}
-                                </a>
+                                {{ $transaction->description }}
                             </td>
                             <td>
                                 {{ $transaction->transactionInDollars() }}
@@ -162,6 +158,9 @@
                     @endforelse
                     </tbody>
                 </table>
+        </div>
+        <div class="pt-3">
+            <a href="{{ route('rates.index') }}">See the current rates we offer</a>
         </div>
     </div>
 @endsection

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
-use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,23 +11,11 @@ class AccountsController extends Controller
 {
     public function index(): view
     {
-        $accounts = auth()->user()->accounts;
+        $user = auth()->user();
 
-        $sentTransactions = auth()->user()->sentTransactions;
-        $receivedTransactions = auth()->user()->receivedTransactions;
+        $sentTransactions = $user->sentTransactions();
 
-        foreach($accounts as $account)
-        {
-            $s = Transaction::where('from_user_id', $account->name)->get();
-            $r = Transaction::where('to_user_id', $account->name)->get();
-
-            if ($s->count() !== 0) {
-                $sentTransactions = $s;
-            }
-            if ($r->count() !== 0) {
-                $receivedTransactions = $r;
-            }
-        }
+        $receivedTransactions = $user->receivedTransactions();
 
         return view('accounts.index', [
             'user' => auth()->user(),
@@ -48,7 +35,7 @@ class AccountsController extends Controller
         $details = request()->validate([
             'name' => 'required',
             'balance' => 'required|int',
-            'currency_type' => 'required',
+            'currency_type' => 'exists:rates,rate_id',
         ]);
 
         auth()->user()->accounts()->create($details);

@@ -10,14 +10,14 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'from_user_id',
-        'to_user_id',
+        'from_user_account_id',
+        'to_user_account_id',
         'amount',
         'description',
     ];
 
     public function transactionInDollars(): string
     {
-        return '$' . $this->amount / 100;
+        return '$' . $this->amount;
     }
 }

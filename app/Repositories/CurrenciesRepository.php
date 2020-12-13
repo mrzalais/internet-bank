@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface CurrenciesRepository
 {
-    public function getRates();
+    public function getRates(): Collection;
 }

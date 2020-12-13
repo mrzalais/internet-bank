@@ -1,9 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <a href="{{ route('accounts.index') }}" class="btn btn-primary btn-sm">
-            Back
-        </a>
+        <div class="pb-3">
+            <a href="{{ route('accounts.index') }}" class="btn btn-primary btn-sm">
+                Back
+            </a>
+        </div>
+
         <form method="post" action="{{ route('accounts.update', $account) }}">
             @csrf
             @method('PUT')

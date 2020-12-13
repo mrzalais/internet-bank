@@ -15,7 +15,6 @@
                     <tbody>
                     @foreach($rates as $rate)
                         <tr>
-                            <th scope="row">{{ $rate->id }}</th>
                             <td>
                                 {{ $rate->rate_id }}
                             </td>

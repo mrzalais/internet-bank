@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use App\Models\Transaction;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -48,13 +50,43 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Account::class, 'owner_id');
     }
 
-    public function sentTransactions(): hasMany
+    public function sentTransactions(): Collection
     {
-        return $this->hasMany(Transaction::class, 'from_user_id');
+        $accounts = auth()->user()->accounts;
+
+        $sentTransactions = Collection::empty();
+
+        foreach ($accounts as $account) {
+            $sent = Transaction::where('from_user_account_id', $account->name)->get();
+
+            if ($sent->count() !== 0) {
+                $sentTransactions = $sentTransactions->concat($sent);
+            }
+        }
+
+        return $sentTransactions;
     }
 
-    public function receivedTransactions(): hasMany
+    public function receivedTransactions(): Collection
     {
-        return $this->hasMany(Transaction::class, 'to_user_id');
+        $accounts = auth()->user()->accounts;
+
+        $receivedTransactions = Collection::empty();
+
+        foreach ($accounts as $account) {
+            $received = Transaction::where('to_user_account_id', $account->name)->get();
+
+            if ($received->count() !== 0) {
+                $receivedTransactions = $received;
+            }
+
+            $sent = Transaction::where('from_user_account_id', $account->name)->get();
+
+            if ($sent->count() !== 0) {
+                $receivedTransactions = $receivedTransactions->concat($sent);
+            }
+        }
+
+        return $receivedTransactions;
     }
 }
